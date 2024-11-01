@@ -4,12 +4,12 @@ import { Character } from '../../types/Character';
 const BASE_URL = 'https://rickandmortyapi.com/api';
 
 // Fetches all characters
-export const fetchCharacters = async (page: number): Promise<Character[]> => {
+export const fetchCharacters = async (page: number) => {
     const response = await axios.get(`${BASE_URL}/character`, {
-        params: { page },
+      params: { page },
     });
-    return response.data.results; 
-};
+    return response.data;
+  };
 
 // Fetches singular character by name
 export const fetchCharacterByName = async (name: string) => {

@@ -1,11 +1,14 @@
 import React from 'react';
-import { Button, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
 import CharacterList from '../components/CharacterList';
+import { Typography } from '@mui/material';
 
 const CharacterExplorer: React.FC = () => {
     return (
         <div>
+
+            <Typography variant="h2" gutterBottom style={{textAlign: 'center', marginTop: '1em'}}>
+                All Characters
+            </Typography>
             
             <CharacterList />
             

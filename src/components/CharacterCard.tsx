@@ -1,25 +1,13 @@
 import React, { useState } from 'react';
-import { fetchCharacterByName } from '../api/mortyApi';
-import { Character } from '../../types/Character';
 import { Button, Container, Typography , TextField} from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const CharacterCard: React.FC = () => {
     const [characterName, setCharacterName] = useState('');
-    const [error, setError] = useState('');
-    const [character, setCharacter] = useState<Character[]>([]);
-    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleSearch = async () => {
-        setError('');
-        setLoading(true);
-        try{
-            const data = await fetchCharacterByName(characterName);
-            setCharacter(data);
-        } catch(err){
-            setError('Failed to find character');
-        } finally{
-            setLoading(false);
-        }
+        navigate(`/CharacterDetails/${characterName}`);
     };
 
     return(
@@ -43,23 +31,6 @@ const CharacterCard: React.FC = () => {
                     Search
                 </Button>
             </Container>
-
-            {loading && <Typography variant='h6'>Loading...</Typography>}
-            {error && <Typography variant='h6' color="error">{error}</Typography>}
-
-            {character.length > 0 &&(
-                <div>
-                    {character.map((character) => (
-                        <div key={character.id}>
-                            <Typography variant="h6">{character.name}</Typography>
-                            <img src={character.image} alt={character.name} />
-                            <Typography variant="body1">Status: {character.status}</Typography>
-                            <Typography variant="body1">Species: {character.species}</Typography>
-                        </div>
-                    ))}
-                </div>
-            )}
-
         </div>
     )
 }
