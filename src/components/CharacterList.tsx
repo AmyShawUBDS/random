@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { fetchCharacters } from '../api/mortyApi';
 import { Character } from '../../types/Character';
-import { Typography, Grid, Card, CardMedia, CardContent, Button } from '@mui/material';
+import { Typography, Grid2, Card, CardMedia, CardContent, Button } from '@mui/material';
+
 
 const CharacterList: React.FC = () => {
     const [characters, setCharacters] = useState<Character[]>([]);
@@ -51,9 +52,10 @@ const CharacterList: React.FC = () => {
     return(
         <div>
 
-            <Grid container spacing = {4} sx={{padding:'3em'}}>
+            <Grid2 container spacing={3} sx={{padding:'3em'}}>
                 {characters.map(character => (
-                    <Grid item xs={12} sm={6} md={4} lg={3}
+                    <Grid2 
+                        size={{xs: 12, sm: 6, md: 4, lg: 3}}
                         key={character.id}
                     >
                         <Card>
@@ -80,18 +82,17 @@ const CharacterList: React.FC = () => {
                                 </Typography>
                             </CardContent>
                         </Card>
-                    </Grid>
+                    </Grid2>
                 ))}
 
-            </Grid>
-            <Grid 
+            </Grid2>
+            <Grid2
                 container 
                 justifyContent="space-between" 
                 sx={{
                     marginBottom: '2em',
                     marginTop: '-1em'
                 }}
-                // sx={{margin: '1em 0'}}
             >
                 <Button 
                     variant="contained" 
@@ -109,7 +110,7 @@ const CharacterList: React.FC = () => {
                 >
                     Next
                 </Button>
-            </Grid>
+            </Grid2>
 
         </div>
     )
